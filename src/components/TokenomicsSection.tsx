@@ -50,7 +50,7 @@ export default function TokenomicsSection() {
                 viewport={{ once: true }}
                 className="text-[10px] font-bold text-slate-500 tracking-[0.2em] uppercase"
               >
-                Lógica Deflacionária
+                Estratégia do Ecossistema
               </motion.h5>
               <motion.div 
                 initial={{ opacity: 0, x: -10 }}
@@ -59,7 +59,7 @@ export default function TokenomicsSection() {
                 transition={{ delay: 0.3 }}
                 className="text-sm text-slate-400 bg-white/5 p-6 rounded-2xl border-l-2 border-ybb-pink leading-relaxed font-light"
               >
-                Até <span className="text-ybb-pink font-bold">1% da receita global</span> é automaticamente utilizada para recompras do token e enviados para a pool de cashback e recompensas para garantir a estabilidade a longo prazo.
+                A Youbbe poderá utilizar parte de sua receita operacional para programas de incentivo e fortalecimento do ecossistema, incluindo iniciativas de cashback, recompensas, liquidez operacional e expansão da utilidade do token (YOUB.), sempre de forma estratégica, variável e não garantida.
               </motion.div>
             </div>
 

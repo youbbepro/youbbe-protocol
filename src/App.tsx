@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import PillarSection from './components/PillarSection';
 import TokenomicsSection from './components/TokenomicsSection';
 import SocialImpactSection from './components/SocialImpactSection';
+import Disclaimer from './components/Disclaimer';
 import Footer from './components/Footer';
 import { ECOSYSTEM_PILLARS } from './types';
 
@@ -80,6 +81,7 @@ export default function App() {
         <TokenomicsSection />
         
         <SocialImpactSection />
+        <Disclaimer />
       </main>
 
       <Footer />
