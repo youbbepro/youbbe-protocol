@@ -32,7 +32,7 @@ export default function TokenomicsSection() {
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-[10px] font-bold text-ybb-amber tracking-[0.4em] mb-4 uppercase"
+                className="text-[9px] font-bold text-ybb-amber tracking-[0.4em] mb-4 uppercase"
               >
                 {t('section.tokenomics.badge')}
               </motion.h4>
@@ -41,9 +41,9 @@ export default function TokenomicsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-5xl md:text-6xl font-display font-bold text-white leading-tight uppercase"
+                className="text-3xl md:text-5xl font-display font-bold text-white leading-tight uppercase"
               >
-                {t('section.tokenomics.title')}
+                Youbbe <span className="text-ybb-pink">Token</span> (YOUB.)
               </motion.h2>
             </div>
             
@@ -55,8 +55,8 @@ export default function TokenomicsSection() {
               className="p-10 glass-pink rounded-[2.5rem] border-white/5 space-y-4 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-ybb-pink/10 blur-3xl rounded-full" />
-              <div className="text-[10px] text-slate-500 font-bold tracking-[0.3em] uppercase text-center relative z-10">{t('section.tokenomics.total_supply')}</div>
-              <div className="text-4xl md:text-5xl font-mono text-white text-center tracking-tighter relative z-10">{TOKENOMICS.totalSupply}</div>
+              <div className="text-[9px] text-slate-500 font-bold tracking-[0.3em] uppercase text-center relative z-10">{t('section.tokenomics.total_supply')}</div>
+              <div className="text-2xl md:text-3xl font-mono text-white text-center tracking-tighter relative z-10">{TOKENOMICS.totalSupply}</div>
             </motion.div>
 
             <div className="space-y-4">

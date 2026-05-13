@@ -8,10 +8,26 @@ export default function SocialImpactSection() {
 
   return (
     <section id="social" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background Decorative */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.03] pointer-events-none">
-        <div className="w-full h-full flex items-center justify-center">
-          <Globe size={800} />
+      {/* Background Decorative - Hi-Tech Rays */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%]">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute top-1/2 left-1/2 w-full h-[1px] bg-linear-to-r from-transparent via-ybb-pink to-transparent origin-center"
+              style={{ rotate: i * 30 }}
+              animate={{ 
+                opacity: [0.2, 1, 0.2],
+                scaleX: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 4 + i % 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.2
+              }}
+            />
+          ))}
         </div>
       </div>
 
@@ -31,7 +47,11 @@ export default function SocialImpactSection() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl font-bold mb-8 uppercase"
         >
-          {t('social.badge')}
+          {t('social.badge').split(' ').map((word, i) => (
+            <span key={i} className={word.toLowerCase().includes('social') ? "text-ybb-pink" : "text-white"}>
+              {word}{' '}
+            </span>
+          ))}
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0 }}
