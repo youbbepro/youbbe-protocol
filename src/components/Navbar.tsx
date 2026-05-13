@@ -100,18 +100,39 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 py-8 px-6 flex flex-col gap-6 md:hidden"
           >
+            <div className="flex items-center justify-between border-b border-white/5 pb-4">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Language / Idioma</span>
+              <div className="flex items-center gap-1 bg-white/5 border border-white/10 p-1 rounded-lg">
+                {(['pt', 'en', 'es'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => {
+                      setLanguage(lang);
+                      // Don't close menu automatically so user sees the change
+                    }}
+                    className={cn(
+                      "text-[9px] font-bold uppercase transition-all px-3 py-1.5 rounded-md",
+                      language === lang ? "bg-ybb-pink text-white shadow-lg" : "text-slate-500 hover:text-white"
+                    )}
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href}
-                className="text-lg font-medium text-zinc-400 hover:text-white border-b border-white/5 pb-2"
+                className="text-lg font-medium text-zinc-400 hover:text-white border-b border-white/5 pb-2 uppercase tracking-wide text-sm"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <button className="w-full bg-white text-black py-4 rounded-xl font-bold">
-              Get Started
+            <button className="w-full bg-ybb-pink text-white py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-xs shadow-[0_0_20px_rgba(255,51,102,0.3)]">
+              {t('nav.connect')}
             </button>
           </motion.div>
         )}
