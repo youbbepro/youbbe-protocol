@@ -73,7 +73,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full hover:border-ybb-pink/30 transition-colors group">
             <div className="w-2 h-2 rounded-full bg-ybb-pink shadow-[0_0_8px_#ff3366] animate-pulse"></div>
-            <span className="text-xs font-mono text-slate-300 group-hover:text-white transition-colors cursor-help">(YOUB.): $0.4281</span>
+            <span className="text-xs font-mono text-slate-300 group-hover:text-white transition-colors cursor-help">(YOUB.): $0.0021</span>
           </div>
 
           <button className="bg-ybb-pink text-white px-8 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-all uppercase flex items-center gap-2 group shadow-[0_0_20px_rgba(255,51,102,0.3)]">
