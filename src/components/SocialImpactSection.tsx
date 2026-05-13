@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Heart, PawPrint, Users, Globe } from 'lucide-react';
+import { useTranslation } from '@/src/lib/i18n';
 
 export default function SocialImpactSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Background Decorative */}
@@ -26,9 +29,9 @@ export default function SocialImpactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-bold mb-8"
+          className="text-4xl md:text-6xl font-bold mb-8 uppercase"
         >
-          IMPACTO SOCIAL
+          {t('impact.title')}
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0 }}
@@ -37,28 +40,27 @@ export default function SocialImpactSection() {
           transition={{ delay: 0.2 }}
           className="max-w-3xl mx-auto text-lg md:text-xl text-zinc-400 mb-16 italic"
         >
-          "A tecnologia é mais poderosa quando empodera comunidades e protege 
-          aqueles que não podem falar por si mesmos."
+          {t('impact.quote')}
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           <ImpactCard 
             index={0}
             icon={<PawPrint />}
-            title="Causas Animais"
-            description="Financiamento direto para abrigos, operações de resgate e organizações de bem-estar animal globalmente."
+            title={t('impact.causes.animal.title')}
+            description={t('impact.causes.animal.desc')}
           />
           <ImpactCard 
             index={1}
             icon={<Users />}
-            title="Projetos Sociais"
-            description="Empoderando comunidades vulneráveis através da educação tecnológica e infraestrutura."
+            title={t('impact.causes.social.title')}
+            description={t('impact.causes.social.desc')}
           />
           <ImpactCard 
             index={2}
             icon={<Globe />}
-            title="Meio Ambiente"
-            description="Apoiando iniciativas de sustentabilidade e programas de compensação de carbono em nossa infraestrutura digital."
+            title={t('impact.causes.env.title')}
+            description={t('impact.causes.env.desc')}
           />
         </div>
 
@@ -69,7 +71,7 @@ export default function SocialImpactSection() {
           transition={{ delay: 0.5 }}
           className="mt-16 inline-flex items-center gap-2 text-ybb-pink font-bold tracking-widest uppercase text-xs cursor-pointer hover:underline"
         >
-          Saiba mais sobre nosso modelo de governança
+          {t('impact.governance')}
         </motion.div>
       </div>
     </section>
@@ -89,7 +91,7 @@ function ImpactCard({ icon, title, description, index }: { icon: any, title: str
         {icon}
       </div>
       <h3 className="text-2xl font-bold mb-4">{title}</h3>
-      <p className="text-zinc-400 leading-relaxed">
+      <p className="text-zinc-400 leading-relaxed text-sm">
         {description}
       </p>
     </motion.div>

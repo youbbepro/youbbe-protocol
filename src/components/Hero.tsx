@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ChevronRight, ArrowRight, LayoutDashboard, Wallet, Brain } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useTranslation } from '@/src/lib/i18n';
 
 import Logo from './Logo';
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-[110vh] flex flex-col items-center justify-center pt-20 overflow-hidden">
       {/* Background Ambience & Lasers */}
@@ -34,7 +37,7 @@ export default function Hero() {
             <span className="w-1 h-1 bg-ybb-pink rounded-full animate-ping" />
             <span className="w-1.5 h-1.5 rounded-full bg-ybb-pink status-glow" />
           </div>
-          System Protocol Active // v1.0.4
+          {t('label.protocol_v')}
         </motion.div>
 
         <motion.div
@@ -53,14 +56,14 @@ export default function Hero() {
             <div className="h-1 w-48 bg-linear-to-r from-transparent via-ybb-pink to-transparent opacity-50 mt-8" />
             <div className="flex items-center gap-4 mt-6">
                <span className="w-2 h-2 bg-ybb-pink rounded-full blur-[2px]" />
-               <span className="text-sm md:text-lg font-thin text-slate-500 tracking-[1em] uppercase">Ecossistema Global</span>
+               <span className="text-sm md:text-lg font-thin text-slate-500 tracking-[1em] uppercase">{t('nav.ecosystem')} Global</span>
                <span className="w-2 h-2 bg-ybb-pink rounded-full blur-[2px]" />
             </div>
           </div>
         </motion.div>
 
         <div className="max-w-3xl mx-auto text-lg md:text-2xl text-slate-400 font-light leading-relaxed mb-16 overflow-hidden">
-          {"Arquitetura de alta performance unificada por inteligência artificial e protocolos distribuídos.".split(" ").map((word, i) => (
+          {t('hero.subtitle').split(" ").map((word, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, y: 10 }}
@@ -68,9 +71,7 @@ export default function Hero() {
               transition={{ duration: 0.4, delay: 0.4 + i * 0.05 }}
               className="inline-block mr-[0.25em]"
             >
-              {word === "alta" || word === "performance" ? (
-                <span className="text-white font-medium italic">{word}</span>
-              ) : word}
+               {word}
             </motion.span>
           ))}
         </div>
@@ -82,11 +83,11 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <button className="w-full sm:w-auto px-10 py-5 bg-ybb-pink text-white font-bold text-xs tracking-[0.3em] uppercase rounded-full hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 group shadow-[0_0_30px_rgba(255,51,102,0.4)]">
-            Explorar Ecossistema
+            {t('hero.cta.primary')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button className="w-full sm:w-auto px-10 py-5 glass text-white font-bold text-xs tracking-[0.3em] uppercase rounded-full hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-            Whitepaper
+            {t('nav.docs')}
           </button>
         </motion.div>
       </div>

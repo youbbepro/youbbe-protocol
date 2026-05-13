@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, Globe } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import { useTranslation } from '@/src/lib/i18n';
 
 import Logo from './Logo';
 
 export default function Navbar() {
+  const { language, setLanguage, t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,13 +21,13 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Hub', href: '#hub' },
-    { name: 'Págs', href: '#pay' },
-    { name: 'Vida', href: '#life' },
-    { name: 'Criadores', href: '#creators' },
-    { name: 'Viagem', href: '#travel' },
-    { name: 'IA', href: '#ai' },
-    { name: 'Token', href: '#token' },
+    { name: t('nav.hub'), href: '#hub' },
+    { name: t('nav.pay'), href: '#pay' },
+    { name: t('nav.life'), href: '#life' },
+    { name: t('nav.creators'), href: '#creators' },
+    { name: t('nav.travel'), href: '#travel' },
+    { name: t('nav.ai'), href: '#ai' },
+    { name: t('nav.token'), href: '#token' },
   ];
 
   return (
@@ -40,8 +43,8 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-10">
-          <div className="flex gap-8 text-[11px] font-bold tracking-[0.2em] text-slate-500">
+        <div className="hidden lg:flex items-center gap-6">
+          <div className="flex gap-6 text-[11px] font-bold tracking-[0.2em] text-slate-500 mr-4">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
@@ -53,13 +56,28 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-4 py-2 rounded-full hover:border-ybb-pink/30 transition-colors group">
+          <div className="flex items-center gap-1 bg-white/5 border border-white/10 p-1 rounded-lg">
+            {(['pt', 'en', 'es'] as const).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setLanguage(lang)}
+                className={cn(
+                  "text-[9px] font-bold uppercase transition-all px-2 py-1 rounded-md",
+                  language === lang ? "bg-ybb-pink text-white shadow-lg" : "text-slate-500 hover:text-white"
+                )}
+              >
+                {lang}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full hover:border-ybb-pink/30 transition-colors group">
             <div className="w-2 h-2 rounded-full bg-ybb-pink shadow-[0_0_8px_#ff3366] animate-pulse"></div>
             <span className="text-xs font-mono text-slate-300 group-hover:text-white transition-colors cursor-help">(YOUB.): $0.4281</span>
           </div>
 
           <button className="bg-ybb-pink text-white px-8 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-all uppercase flex items-center gap-2 group shadow-[0_0_20px_rgba(255,51,102,0.3)]">
-            Conectar
+            {t('nav.connect')}
             <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>

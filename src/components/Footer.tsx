@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Github, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { useTranslation } from '@/src/lib/i18n';
 
 import Logo from './Logo';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-black border-t border-white/5 py-16">
       <div className="container mx-auto px-10">
@@ -26,16 +28,16 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row gap-10">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-ybb-pink status-glow"></span>
-              Staking de Utilidade Ativo
+              {t('footer.staking')}
             </div>
             <div className="flex items-center gap-2 text-indigo-400">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 status-glow"></span>
-              Infraestrutura Global Pronta
+              {t('footer.infra')}
             </div>
           </div>
           
           <div className="flex flex-col md:flex-row items-center gap-10">
-            <span className="text-center md:text-right hover:text-white transition-colors cursor-help">Impacto: Causas Animais & Apoio Comunitário</span>
+            <span className="text-center md:text-right hover:text-white transition-colors cursor-help">{t('label.impact_footer')}</span>
             <span className="text-white/10 select-none">© 2024 Youbbe Global Protocol</span>
           </div>
         </motion.div>

@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import * as LucideIcons from 'lucide-react';
 import { Pillar } from '@/src/types';
 import { cn } from '@/src/lib/utils';
+import { useTranslation } from '@/src/lib/i18n';
 
 interface PillarSectionProps {
   pillar: Pillar;
@@ -11,6 +12,7 @@ interface PillarSectionProps {
 }
 
 export default function PillarSection({ pillar, index }: PillarSectionProps) {
+  const { t } = useTranslation();
   const IconComponent = (LucideIcons as any)[pillar.icon] || LucideIcons.HelpCircle;
   const isEven = index % 2 === 0;
 
@@ -29,7 +31,7 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
       border: "border-emerald-500/20", 
       shadow: "shadow-emerald-500/10", 
       glow: "from-emerald-500",
-      label: "PAGAMENTOS"
+      label: t('nav.pay') || "PAY"
     },
     rose: { 
       text: "text-orange-400", 
@@ -37,7 +39,7 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
       border: "border-orange-500/20", 
       shadow: "shadow-orange-500/10", 
       glow: "from-orange-500",
-      label: "VIDA"
+      label: t('nav.life') || "LIFE"
     },
     purple: { 
       text: "text-pink-400", 
@@ -45,7 +47,7 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
       border: "border-pink-500/20", 
       shadow: "shadow-pink-500/10", 
       glow: "from-pink-500",
-      label: "CRIADORES"
+      label: t('nav.creators') || "CREATORS"
     },
     cyan: { 
       text: "text-blue-400", 
@@ -53,7 +55,7 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
       border: "border-blue-500/20", 
       shadow: "shadow-blue-500/10", 
       glow: "from-blue-500",
-      label: "VIAGEM"
+      label: t('nav.travel') || "TRAVEL"
     },
     amber: { 
       text: "text-violet-400", 
@@ -61,11 +63,25 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
       border: "border-violet-500/20", 
       shadow: "shadow-violet-500/10", 
       glow: "from-violet-500",
-      label: "CAMADA IA"
+      label: t('nav.ai') || "AI"
     },
   };
 
   const style = colorStyles[pillar.color] || colorStyles.blue;
+
+  const features = [
+    t(`pillar.${pillar.id}.feat1`),
+    t(`pillar.${pillar.id}.feat2`),
+    t(`pillar.${pillar.id}.feat3`),
+    t(`pillar.${pillar.id}.feat4`),
+  ];
+
+  const utilities = [
+    t(`pillar.${pillar.id}.util1`),
+    t(`pillar.${pillar.id}.util2`),
+    t(`pillar.${pillar.id}.util3`),
+    t(`pillar.${pillar.id}.util4`),
+  ];
 
   return (
     <section 
@@ -94,7 +110,7 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
               viewport={{ once: true }}
               className="text-3xl md:text-5xl font-bold mb-6"
             >
-              {pillar.title}
+              {t(`pillar.${pillar.id}.title`)}
             </motion.h2>
 
             <motion.p 
@@ -104,7 +120,7 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
               transition={{ delay: 0.1 }}
               className="text-lg text-slate-400 font-light mb-12"
             >
-              {pillar.description}
+              {t(`pillar.${pillar.id}.desc`)}
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -115,10 +131,10 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
                   viewport={{ once: true }}
                   className="text-[10px] font-bold uppercase tracking-widest text-slate-600"
                 >
-                  Recursos Principais
+                  {t('pillar.view_features')}
                 </motion.h4>
                 <ul className="space-y-3">
-                  {pillar.features.map((feature, i) => (
+                  {features.map((feature, i) => (
                     <motion.li 
                       key={i} 
                       initial={{ opacity: 0, x: -10 }}
@@ -143,10 +159,10 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
                   viewport={{ once: true }}
                   className="text-[10px] text-ybb-pink/80 font-bold tracking-[0.3em] uppercase block mb-3"
                 >
-                  Utilidade (YOUB.)
+                   {t('pillar.token_utility')} (YOUB.)
                 </motion.span>
                 <ul className="space-y-1">
-                   {pillar.tokenUtility.map((utility, i) => (
+                   {utilities.map((utility, i) => (
                     <motion.li 
                       key={i} 
                       initial={{ opacity: 0, x: -5 }}
@@ -164,9 +180,9 @@ export default function PillarSection({ pillar, index }: PillarSectionProps) {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full md:w-auto px-8 py-3 bg-white text-black rounded-full font-bold text-xs tracking-widest uppercase hover:bg-ybb-pink hover:text-white transition-all shadow-lg"
+                className="w-full md:w-auto px-8 py-3 bg-white text-black rounded-full font-bold text-xs tracking-widest uppercase hover:bg-ybb-pink hover:text-white transition-all shadow-lg text-center"
               >
-                Acessar {style.label}
+                {t('nav.ecosystem')}
               </motion.button>
             </div>
           </div>
