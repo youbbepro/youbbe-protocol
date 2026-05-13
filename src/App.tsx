@@ -8,8 +8,10 @@ import SocialImpactSection from './components/SocialImpactSection';
 import Disclaimer from './components/Disclaimer';
 import Footer from './components/Footer';
 import { ECOSYSTEM_PILLARS } from './types';
+import { useTranslation } from './lib/i18n';
 
 export default function App() {
+  const { t } = useTranslation();
   // Smooth scroll behavior
   useEffect(() => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -46,16 +48,16 @@ export default function App() {
                   viewport={{ once: true }}
                   className="text-[10px] font-bold uppercase tracking-[0.5em] text-ybb-indigo mb-6"
                 >
-                  Infraestrutura Digital
+                  {t('section.digital_infra')}
                 </motion.h2>
                 <motion.p 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="text-4xl md:text-6xl font-bold max-w-4xl leading-tight"
+                  className="text-3xl md:text-5xl font-bold max-w-4xl leading-tight bg-linear-to-r from-white via-white to-ybb-pink/50 bg-clip-text text-transparent"
                 >
-                  Uma sinfonia de <span className="font-thin text-slate-500 italic">módulos verticais</span>, unificados por inteligência.
+                  {t('section.digital_infra.desc')}
                 </motion.p>
                </div>
                <motion.div 
@@ -64,7 +66,7 @@ export default function App() {
                  viewport={{ once: true }}
                  className="writing-vertical hidden lg:block text-[10px] tracking-[0.5em] text-slate-800 uppercase font-bold h-32"
                >
-                 Protocolo v1.0.4
+                 {t('label.protocol_v')}
                </motion.div>
             </div>
           </div>

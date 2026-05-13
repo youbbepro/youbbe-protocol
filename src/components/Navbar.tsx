@@ -28,6 +28,7 @@ export default function Navbar() {
     { name: t('nav.travel'), href: '#travel' },
     { name: t('nav.ai'), href: '#ai' },
     { name: t('nav.token'), href: '#token' },
+    { name: t('nav.impact'), href: '#social' },
   ];
 
   return (

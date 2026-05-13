@@ -7,7 +7,7 @@ export default function SocialImpactSection() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
+    <section id="social" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background Decorative */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.03] pointer-events-none">
         <div className="w-full h-full flex items-center justify-center">
@@ -31,7 +31,7 @@ export default function SocialImpactSection() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl font-bold mb-8 uppercase"
         >
-          {t('impact.title')}
+          {t('social.badge')}
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0 }}
@@ -40,27 +40,27 @@ export default function SocialImpactSection() {
           transition={{ delay: 0.2 }}
           className="max-w-3xl mx-auto text-lg md:text-xl text-zinc-400 mb-16 italic"
         >
-          {t('impact.quote')}
+          {t('social.quote')}
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           <ImpactCard 
             index={0}
             icon={<PawPrint />}
-            title={t('impact.causes.animal.title')}
-            description={t('impact.causes.animal.desc')}
+            title={t('social.causes_animals')}
+            description={t('social.causes_animals.desc')}
           />
           <ImpactCard 
             index={1}
             icon={<Users />}
-            title={t('impact.causes.social.title')}
-            description={t('impact.causes.social.desc')}
+            title={t('social.social_projects')}
+            description={t('social.social_projects.desc')}
           />
           <ImpactCard 
             index={2}
             icon={<Globe />}
-            title={t('impact.causes.env.title')}
-            description={t('impact.causes.env.desc')}
+            title={t('social.environment')}
+            description={t('social.environment.desc')}
           />
         </div>
 
@@ -71,7 +71,7 @@ export default function SocialImpactSection() {
           transition={{ delay: 0.5 }}
           className="mt-16 inline-flex items-center gap-2 text-ybb-pink font-bold tracking-widest uppercase text-xs cursor-pointer hover:underline"
         >
-          {t('impact.governance')}
+          {t('social.governance')}
         </motion.div>
       </div>
     </section>
