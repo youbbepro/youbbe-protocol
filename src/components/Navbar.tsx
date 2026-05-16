@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ChevronRight, Globe } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 import { useTranslation } from '@/src/lib/i18n';
 
@@ -8,9 +9,9 @@ import Logo from './Logo';
 
 export default function Navbar() {
   const { language, setLanguage, t } = useTranslation();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,8 +29,11 @@ export default function Navbar() {
     { name: t('nav.travel'), href: '#travel' },
     { name: t('nav.ai'), href: '#ai' },
     { name: t('nav.token'), href: '#token' },
+    { name: 'Roadmap', href: '/roadmap', isInternal: true },
     { name: t('nav.impact'), href: '#social' },
   ];
+
+  const isHomePage = location.pathname === '/';
 
   return (
     <nav 
@@ -39,21 +43,31 @@ export default function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#">
+        <Link to="/">
           <Logo size="md" />
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-6">
           <div className="flex gap-6 text-[11px] font-bold tracking-[0.2em] text-slate-500 mr-4">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href}
-                className="hover:text-ybb-pink transition-colors uppercase"
-              >
-                {link.name}
-              </a>
+              link.isInternal ? (
+                <Link 
+                  key={link.name} 
+                  to={link.href}
+                  className="hover:text-ybb-pink transition-colors uppercase"
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a 
+                  key={link.name} 
+                  href={isHomePage ? link.href : `/${link.href}`}
+                  className="hover:text-ybb-pink transition-colors uppercase"
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </div>
 
@@ -85,7 +99,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-white"
+          className="lg:hidden text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X /> : <Menu />}
@@ -99,7 +113,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 py-8 px-6 flex flex-col gap-6 md:hidden"
+            className="absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 py-8 px-6 flex flex-col gap-6 lg:hidden"
           >
             <div className="flex items-center justify-between border-b border-white/5 pb-4">
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Language / Idioma</span>
@@ -109,7 +123,6 @@ export default function Navbar() {
                     key={lang}
                     onClick={() => {
                       setLanguage(lang);
-                      // Don't close menu automatically so user sees the change
                     }}
                     className={cn(
                       "text-[9px] font-bold uppercase transition-all px-3 py-1.5 rounded-md",
@@ -123,14 +136,25 @@ export default function Navbar() {
             </div>
 
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href}
-                className="text-lg font-medium text-zinc-400 hover:text-white border-b border-white/5 pb-2 uppercase tracking-wide text-sm"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
+              link.isInternal ? (
+                <Link 
+                  key={link.name} 
+                  to={link.href}
+                  className="text-lg font-medium text-zinc-400 hover:text-white border-b border-white/5 pb-2 uppercase tracking-wide text-sm"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a 
+                  key={link.name} 
+                  href={isHomePage ? link.href : `/${link.href}`}
+                  className="text-lg font-medium text-zinc-400 hover:text-white border-b border-white/5 pb-2 uppercase tracking-wide text-sm"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              )
             ))}
             <button className="w-full bg-ybb-pink text-white py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-xs shadow-[0_0_20px_rgba(255,51,102,0.3)]">
               {t('nav.connect')}
